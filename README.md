@@ -1,12 +1,9 @@
-# React + Vite
+# devTinder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+-TECH STACK => Vite, React JS, Tailwind CSS, DaisyUI
 
-Currently, two official plugins are available:
+- created devTinder-UI project using vite
+- installed Tailwind CSS and configured as well
+- installed daisyUI which must be installed after node.js and  tailwind CSS.. Configuration is also done.
+- got navbar from daisyUI and did some customization 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

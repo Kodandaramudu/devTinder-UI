@@ -1,31 +1,33 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../userSlice";
+import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
-
+import BASE_URL from "../utils/const";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("kodandaramuduj@csk.com");
   const [password, setPassword] = useState("Ayyappaj@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleData = async () =>{
-    try{
-      const res = await axios.post("http://localhost:7777/login",{
-        emailId,
-        password
-      },
-    {
-      withCredentials:true
-    });
-    dispatch(addUser(res.data.data));
-    return navigate("/");
-    }catch(err){
+  const handleData = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "login",
+        {
+          emailId,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(addUser(res.data.data));
+      return navigate("/");
+    } catch (err) {
       console.error(err);
     }
-  }
- 
+  };
 
   return (
     <div className="bg-gray-200 p-8 rounded-lg shadow-lg card w-96 m-auto my-10">
@@ -49,12 +51,14 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => {
-            setPassword(e.target.value);
+              setPassword(e.target.value);
             }}
           />
         </fieldset>
         <div className="card-actions">
-          <button className="btn btn-primary" onClick={handleData}>Login</button>
+          <button className="btn btn-primary" onClick={handleData}>
+            Login
+          </button>
         </div>
       </div>
     </div>

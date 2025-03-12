@@ -20,4 +20,15 @@
 - must pass two arguments inside corse();
 - 1.origin:"http://localhost:5173/"=> whatever port we are running our UI, have to mention that...then it will allow that particular origin
   2.credentials: true => allow cookies
+# Redux
+- Installed @reduxjs/toolkit react-redux.
+- Configured the store using @reduxjs/toolkit
+- Created a userSlice of the store using createSlice() available from @reduxjs/toolkit
+- slice takes three args ("name",initialState,reducers:{})
+- in the above reducers are the reducer function which updates the state of the store.
+- fixed bugs:-
+- 1. everytime I'm refreshing my data is not coming up though it has been loggedIn.This is becz of redux state,So Whenever user loggedIn we set the body to be if not user then only update the redux state.
+- 2. We have used Link which is available in react-router-dom for routing sucha as profile view and home
+ 
+
 

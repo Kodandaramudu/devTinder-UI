@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
-import BASE_URL from "../utils/constant";
+import {BASE_URL} from "../utils/constant";
 import { useEffect } from "react";
 import { addUser } from "../utils/userSlice";
 

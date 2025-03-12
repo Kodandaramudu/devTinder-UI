@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeUser } from "../utils/userSlice";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import BASE_URL from "../utils/constant";
+import {BASE_URL} from "../utils/constant";
 
 const Navbar = () => {
   const dispatch = useDispatch();

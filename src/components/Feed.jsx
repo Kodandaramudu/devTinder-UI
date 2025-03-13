@@ -1,9 +1,39 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect } from "react";
+import { BASE_URL } from "../utils/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { addFeed } from "../utils/feedSlice";
+import UserCard from "./UserCard";
 
 const Feed = () => {
-  return (
-    <div>Feed</div>
-  )
-}
+  const dispatch = useDispatch();
+  const feedData = useSelector((store) => store.feed);
 
-export default Feed
+  const getFeed = async () => {
+    try {
+      if (feedData) return;
+      const res = await axios.get(BASE_URL + "/feed", {
+        withCredentials: true,
+      });
+      dispatch(addFeed(res?.data?.data));
+    } catch (err) {
+      if (err.status === 401) {
+        navigate("/login");
+      }
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    getFeed();
+  }, []);
+
+  return (
+    feedData && (
+      <div className="grid place-items-center my-12 rounded-2xl">
+        <UserCard userData={feedData[3]} />
+      </div>
+    )
+  );
+};
+
+export default Feed;

@@ -29,6 +29,7 @@
 - fixed bugs:-
 - 1. everytime I'm refreshing my data is not coming up though it has been loggedIn.This is becz of redux state,So Whenever user loggedIn we set the body to be if not user then only update the redux state.
 - 2. We have used Link which is available in react-router-dom for routing sucha as profile view and home
- 
+- Created feedSlice and reducer to store feed details
+- Created User Card on the feed page 
 
 

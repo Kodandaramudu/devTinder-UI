@@ -30,7 +30,7 @@ const Feed = () => {
   return (
     feedData && (
       <div className="grid place-items-center my-12 rounded-2xl">
-        <UserCard userData={feedData[3]} />
+        <UserCard userData={feedData[0]} />
       </div>
     )
   );

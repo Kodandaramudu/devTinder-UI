@@ -27,10 +27,15 @@ const Feed = () => {
     getFeed();
   }, []);
 
+  if(!feedData) return;
+  if(feedData.length === 0){
+    return <h1 className="font-bold text-2xl flex justify-center my-10">No Feed Available</h1>
+  }
+
   return (
     feedData && (
       <div className="grid place-items-center my-12 rounded-2xl">
-        <UserCard userData={feedData[0]} />
+        {feedData.map((feed)=><UserCard key={feed._id} userData={feed}/>)}
       </div>
     )
   );

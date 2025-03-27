@@ -41,3 +41,19 @@
 
 
 
+# Deployment
+- Created AWS Console Account
+- Launched new EC2 Instance
+- Connected to AWS Instance using key pair(.pem file) in my cmd prompt
+- key:--ssh -i "devHub-secret.pem" ubuntu@ec2-18-188-175-153.us-east-2.compute.amazonaws.com
+- Installed Node in instance
+- cloned the project using --git clone https://github.com/Kodandaramudu/devTinder-UI.git && https://github.com/Kodandaramudu/devTinder.git
+- after that I did check using "ls" cmd whether they are cloned or not
+- Frontend
+  - did npm install
+  - npm run build
+  
+
+
+
+

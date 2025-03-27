@@ -17,16 +17,18 @@ const Navbar = () => {
   };
   const user = useSelector((store) => store.user);
   return (
-    <div className="navbar bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500  p-4 shadow-sm">
+    <div className="navbar bg-gradient-to-r from-black text-white  p-4 shadow-sm">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-xl">👩‍💻DevTinder</Link>
       </div>
-      {user && (
+      {!user?       <div className="flex justify-end">
+        <Link to="/login" className="btn btn-ghost text-xl">LogIn</Link>
+      </div> :  (
         <div className="flex gap-2">
           <p className="mx-4 items-center text-white">
             {"Welcome, " + user?.firstName}
           </p>
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end text-black">
             <div
               tabIndex={0}
               role="button"

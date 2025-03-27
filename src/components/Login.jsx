@@ -6,8 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("kodandaramuduj@csk.com");
-  const [password, setPassword] = useState("Ayyappaj@123");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogInForm, setIsLogInForm] = useState(true);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,27 +33,76 @@ const Login = () => {
       setError(err?.response?.data?.message);
     }
   };
+  const handleSignp = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        {
+          firstName,
+          lastName,
+          emailId,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(addUser(res?.data?.data));
+      return navigate("/profile");
+    } catch (err) {
+      console.error(err);
+      setError(err?.response?.data);
+    }
+  };
 
   return (
-    <div className="bg-gray-200 p-8 rounded-lg shadow-lg card w-96 m-auto my-10">
+    <div className="bg-gradient-to-r from via-orange-200 p-8 rounded-lg shadow-lg card w-96 m-auto my-10">
       <div className="card-body items-center text-center">
-        <h2 className="card-title">Log In</h2>
-        <fieldset className="fieldset">
+        <h2 className="card-title">{isLogInForm? "Log In": "SignUp"}</h2>
+        {!isLogInForm && <> 
+        <fieldset className="fieldset w-full">
           <input
             type="text"
-            className="input"
+            className="input focus:outline-none"
+            placeholder="First Name"
+            required
+            value={firstName}
+            onChange={(e) => {
+            setFirstName(e.target.value);
+            }}
+          />
+        </fieldset>
+        <fieldset className="fieldset w-full">
+          <input
+            type="text"
+            className="input focus:outline-none"
+            placeholder="Last Name"
+            required
+            value={lastName}
+            onChange={(e) => {
+            setLastName(e.target.value);
+            }}
+          /> 
+        </fieldset> </>}
+        <fieldset className="fieldset w-full">
+          <input
+            type="text"
+            className="input focus:outline-none"
             placeholder="Email Id"
+            required
             value={emailId}
             onChange={(e) => {
               setEmailId(e.target.value);
             }}
           />
         </fieldset>
-        <fieldset className="fieldset">
+        <fieldset className="fieldset w-full">
           <input
-            type="password"
-            className="input"
+            type={isPasswordVisible?"password":"text"}
+            onClick={()=>setIsPasswordVisible(!isPasswordVisible)}
+            className="input focus:outline-none"
             placeholder="Password"
+            required
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
@@ -58,10 +111,12 @@ const Login = () => {
         </fieldset>
         <p className="text-red-600">{error}</p>
         <div className="card-actions">
-          <button className="btn btn-primary" onClick={handleData}>
-            Login
+          <button className="btn btn-neutral" onClick={isLogInForm?handleData: handleSignp}>
+            {isLogInForm? "LogIn" :"SignUp"}
           </button>
         </div>
+        <p className="cursor-pointer" onClick={()=>{setIsLogInForm((value)=>!value)}}>
+          {isLogInForm ? "New User? SignUp Here" : "Existing User? Login Here"}</p>
       </div>
     </div>
   );

@@ -34,8 +34,8 @@ const Feed = () => {
 
   return (
     feedData && (
-      <div className="grid place-items-center my-12 rounded-2xl">
-        {feedData.map((feed)=><UserCard key={feed._id} userData={feed}/>)}
+      <div className="grid place-items-center my-12 rounded-2xl text-white">
+        <UserCard  userData={feedData[0]}/>
       </div>
     )
   );

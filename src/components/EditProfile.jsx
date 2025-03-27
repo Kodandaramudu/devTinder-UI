@@ -136,7 +136,7 @@ const EditProfile = ({ user }) => {
                   placeholder="Enter Your Gender"
                   value={gender}
                   onChange={(e) => {
-                    setAge(e.target.value);
+                    setGender(e.target.value);
                   }}
                 />
               </fieldset>}

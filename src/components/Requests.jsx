@@ -79,7 +79,8 @@ const Requests = () => {
                   )}
                   <p>{about}</p>
                   <p>{skills.join(" , ")}</p>
-                  <div className="card-actions justify-center">
+                </div>
+                <div className="card-actions my-auto justify-center p-2">
                     <button
                       className="btn btn-soft btn-success"
                       onClick={() => requestReview("accepted", request._id)}
@@ -93,7 +94,6 @@ const Requests = () => {
                       reject
                     </button>
                   </div>
-                </div>
               </div>
             </div>
           );

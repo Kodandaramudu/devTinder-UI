@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 text-white shadow-sm items-center p-4 fixed bottom-0">
+    <footer className="footer sm:footer-horizontal bg-gradient-to-r from-black text-white shadow-sm items-center p-4 fixed bottom-0">
   <aside className="grid-flow-col items-center">
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
   </aside>

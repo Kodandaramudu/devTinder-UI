@@ -19,10 +19,9 @@ const Feed = () => {
       });
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
-      if (err.status === 401) {
+      if (err.status === 404) {
         navigate("/login");
       }
-      console.error(err);
     }
   };
   useEffect(() => {

@@ -52,7 +52,44 @@
 - Frontend
   - did npm install
   - npm run build
-  
+  - sudo apt update - to update dependencies
+  - sudo apt install nginx - to install nginx
+  - sudo systemctl start nginx - to start nginx
+  - sudo systemctl enable nginx - To enable Nginx to start automatically on boot
+  - copy code from dist(build files) to var/www/html/ (ngnix https server) using below cmd
+  - sudo scp -r dist/* /var/www/html/
+  - enable port 80 of instance
+- Backend
+  - did npm install -- To Install dependecies
+  - allowed EC2 instance on MongoDB server(Network Access)
+  - installed PM2 using below cmd(which up and runs the server 24/7)
+  - npm install pm2 -g --(which will install it globally).
+  - pm2 start npm -- start
+  - pm2 logs (to check logs when application having trouble to start)
+  - pm2 list,pm2 flush <name>(),pm2 stop <name>, pm2 delete <name>
+  - if we want to change the name we can use below cmd
+  - pm2 start npm --name "custom-name" -- start
+  - config nginx sudo nano /etc/nginx/sites-available/default/
+  - after updated the ngnix config file restart ngnix with below cmd
+  - sudo systemctl restart ngnix
+  - change BSAE_URL to /api at frontend project
+
+# Ngnix Server Config
+ 
+  server_name 18.188.175.153;
+
+
+        location /api/ {
+               proxy_pass http://localhost:7777/;
+               proxy_http_version 1.1;
+               proxy_set_header Upgrade $http_upgrade;
+               proxy_set_header Connection 'upgrade';
+               proxy_set_header Host $host;
+               proxy_cache_bypass $http_upgrade;
+        }
+
+
+
 
 
 

@@ -75,7 +75,7 @@
   - change BSAE_URL to /api at frontend project
 
 # Ngnix Server Config
- 
+
   server_name 18.188.175.153;
 
 
@@ -88,6 +88,14 @@
                proxy_cache_bypass $http_upgrade;
         }
 
+# Domain Name Maping
+- purchased domain name from godaddy(Domain Registrar)
+- signUp on cloudfare to manage ur DNS & add a new domain name
+- change the NameServers in goDaddy and point it to cloudfare
+- wait for sometime till your nameServers updated
+- after updated go to DNS records dlete one A record
+- Edit the second A record pointing to your EC2 public IP address(18.188.175.153)
+- Enable SSL for website 
 
 
 

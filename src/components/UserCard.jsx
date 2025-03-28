@@ -39,7 +39,7 @@ const UserCard = ({ userData }) => {
 
   return (
     <div>
-      <div className="card w-96 shadow-sm my-4 bg-gray-800 p-2">
+      <div className="card w-96 shadow-sm my-4 bg-gray-800 p-2 text-white">
         {toast && (
           <div className="alert alert-success">
             <span>{toastMessage}</span>

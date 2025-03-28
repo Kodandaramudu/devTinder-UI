@@ -41,14 +41,14 @@ const Requests = () => {
 
   if (requestsList.length === 0) {
     return (
-      <div className="flex justify-center text-3xl font-bold my-10">
+      <div className="flex justify-center text-3xl font-bold my-10 text-white">
         No Requests Found
       </div>
     );
   }
   return (
     requestsList && (
-      <div className="text-center justify-center">
+      <div className="text-center justify-center ">
         <h1 className="text-2xl font-bold">Requests</h1>
         {requestsList.map((request) => {
           const {

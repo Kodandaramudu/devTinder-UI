@@ -97,6 +97,22 @@
 - Edit the second A record pointing to your EC2 public IP address(18.188.175.153)
 - Enable SSL for website 
 
+# Sending Email Via SES(Simple Email Service)
+ - Create IAM user
+ - after that search for SES, give access to AmazonFullAccess
+ - Amazon SES: Create Identity
+ - Verify your domain name and verify an email address
+ - Install AWS SDK - V3 
+ - create SesClient file
+ - add credentials to env file 
+ - write code for SesClient 
+ - create sendEmail file and write code to send emails after the conncetionRequest sent
+ - make the email dynamic by passing params to the run function
+ 
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import UserCard from "./UserCard";
 import axios from "axios";
@@ -10,10 +10,9 @@ const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [age, setAge] = useState(user?.age);
-  const [gender, setGender] = useState("Gender");
+  const [gender, setGender] = useState(user?.gender||"Gender");
   const [about, setAbout] = useState(user?.about);
   const [photoUrl, setPhotoUrl] = useState(user?.photoUrl);
-  const [preview, setPreview] = useState(user?.photoUrl);
   const [error, setError] = useState("");
   const [showOtherGender,setShowOtherGender] = useState(false);
   const [toast, setToast] = useState(false);
@@ -26,7 +25,14 @@ const EditProfile = ({ user }) => {
      }
     setGender(gender);
     }
-  
+  const handlePhotoChange = (e) =>{
+    const file = e.target.files[0];
+    if(file){
+      const url = URL.createObjectURL(file);
+      setPhotoUrl(url);
+    }
+  }
+
   const saveUserData = async () => {
     try {
       const res = await axios.put(
@@ -49,7 +55,9 @@ const EditProfile = ({ user }) => {
         setToast(false);
       }, 2000);
     } catch (err) {
-      setError(err?.response?.data?.message);
+      setTimeout(()=>{
+        setError(err?.response?.data?.message)
+      },2000);
     }
   };
 
@@ -61,7 +69,7 @@ const EditProfile = ({ user }) => {
             <span>Profile Saved Successfully</span>
           </div>
         )}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="sm:grid grid-cols-2 gap-4">
           <div className="w-full h-[500px] rounded-2xl flex items-center justify-center ">
             <div className="space-y-4">
               <fieldset className="fieldset">
@@ -87,15 +95,11 @@ const EditProfile = ({ user }) => {
                 />
               </fieldset>
               <div className="join w-[95%]">
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="photo"
-                  value={photoUrl}
-                  onChange={(e) => {
-                    setPhotoUrl(e.target.value);
-                  }}
-                />
+              <input type="file"
+               className="file-input file-input-neutral"
+               placeholder="photo"
+               onChange={handlePhotoChange} />
+ 
               </div>
               <fieldset className="fieldset">
                 <input
@@ -167,6 +171,7 @@ const EditProfile = ({ user }) => {
           <div className="w-full h-[500px] rounded-2xl flex items-center justify-center">
             <UserCard
               userData={{ firstName, lastName, photoUrl, age, gender, about }}
+              showButtons={false}
             />
           </div>
         </div>

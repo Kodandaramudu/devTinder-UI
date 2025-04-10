@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constant";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
-const UserCard = ({ userData }) => {
+const UserCard = ({ userData, showButtons }) => {
   const { _id, firstName, lastName, photoUrl, about, gender, age, skills } =
     userData;
   const [toast, setToast] = useState(false);
@@ -62,7 +62,7 @@ const UserCard = ({ userData }) => {
           <div>
             <p className="line-clamp-3">{about}</p>
           </div>
-          <div className="card-actions justify-center">
+          {showButtons && <div className="card-actions justify-center">
             <button
               className="btn btn-soft btn-success"
               onClick={() => handleSendRequest("interested", _id)}
@@ -75,7 +75,7 @@ const UserCard = ({ userData }) => {
             >
               ignore
             </button>
-          </div>
+          </div>}
         </div>
       </div>
     </div>
